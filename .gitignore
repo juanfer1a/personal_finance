@@ -42,3 +42,20 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+
+# Traer imagenes de internet
+return Scaffold(
+        appBar: AppBar(
+          title: const Text('TKT'),
+        ),
+        // ignore: prefer_const_constructors
+        body: ListView(
+          children: [
+            Container(
+              padding: EdgeInsets.all(20.0),
+              child: Image.network(
+                  'https://fundaciondelcorazon.com/images/Blog/iStock-1406926574.jpg'),
+            ),
+          ],
+        ));
