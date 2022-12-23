@@ -26,19 +26,32 @@ class _InicioState extends State<Inicio> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('TKT'),
-      ),
       // ignore: prefer_const_constructors
-      body: Center(
-        child: ElevatedButton(
-          child: Row(children: [Icon(Icons.access_time), Text('Now')]),
-          onPressed: (() {
-            var t = DateTime.now();
-            print('Hola Juanfer son las ${t}');
-          }),
-        ),
-      ),
+      body: Cuerpo(),
     );
   }
+}
+
+Widget Cuerpo() {
+  return Container(
+    decoration: BoxDecoration(
+      image: DecorationImage(
+          image: NetworkImage(
+              "https://wallpapershome.com/images/pages/pic_v/11090.jpg"),
+          fit: BoxFit.cover),
+    ),
+    child: Center(
+      child: Column(
+        children: <Widget>[Nombre(), Nombre()],
+      ),
+    ),
+  );
+}
+
+Widget Nombre() {
+  return Text(
+    'Sign in',
+    style: TextStyle(
+        color: Colors.white, fontSize: 30.0, fontWeight: FontWeight.bold),
+  );
 }
