@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:personal_finance/pages/pages2.dart';
 
 void main() => runApp(MiApp());
 
@@ -26,80 +27,23 @@ class _InicioState extends State<Inicio> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('My app'),
+      ),
       // ignore: prefer_const_constructors
-      body: Cuerpo(),
+      body: Center(
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text('Home'),
+          ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => page2()));
+              },
+              child: Text('Ir a la otra pagina'))
+        ],
+      )),
     );
   }
-}
-
-Widget Cuerpo() {
-  return Container(
-    decoration: BoxDecoration(
-      image: DecorationImage(
-          image: NetworkImage(
-              "https://wallpapershome.com/images/pages/pic_v/11090.jpg"),
-          fit: BoxFit.cover),
-    ),
-    child: Center(
-      child: //Nombre()
-          Column(
-        //mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          Nombre(),
-          SizedBox(
-            height: 10.0,
-          ),
-          campoUsuario(),
-          campoContrasena(),
-          SizedBox(
-            height: 10.0,
-          ),
-          botonEnter(),
-        ],
-      ),
-    ),
-  );
-}
-
-Widget Nombre() {
-  return Text(
-    'Sign in',
-    style: TextStyle(
-        color: Colors.orangeAccent,
-        fontSize: 40.0,
-        fontWeight: FontWeight.bold),
-  );
-}
-
-Widget campoUsuario() {
-  return Container(
-    padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-    child: TextField(
-        decoration: InputDecoration(
-            hintText: "User", fillColor: Colors.white, filled: true)),
-  );
-}
-
-Widget campoContrasena() {
-  return Container(
-    padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-    child: TextField(
-        obscureText: true,
-        decoration: InputDecoration(
-            hintText: "Password", fillColor: Colors.white, filled: true)),
-  );
-}
-
-Widget botonEnter() {
-  return TextButton(
-    onPressed: () {},
-    child: Text('Enter'),
-    style: TextButton.styleFrom(
-      primary: Colors.white,
-      backgroundColor: Colors.orange,
-      padding: const EdgeInsets.symmetric(horizontal: 60.0, vertical: 8.0),
-      textStyle: const TextStyle(fontSize: 20),
-    ),
-  );
 }
