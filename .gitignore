@@ -61,23 +61,23 @@ return Scaffold(
         ));
 
 
-#Filas columnas botones
 
-body: Center(
-        child: ElevatedButton(
-          onPressed: (() {
-            var t = DateTime.now();
-            print('Hola Juanfer son las ${t}');
-          }),
-          child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(Icons.access_time),
-                SizedBox(
-                  width: 10,
-                ),
-                Text('Now')
-              ]),
-        ),
-      ),
+#Filas y columnas
+
+ Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
+          children: <Widget>[
+            Container(
+              height: MediaQuery.of(context).size.height,
+              //width: MediaQuery.of(context).size.width, //asignar todo el ancho dle contexto
+              child: Text(
+                'Hola 01',
+                textAlign: TextAlign.center,
+                
+              ),
+            ),
+            Text('Hola 02'),
+          ],
+        )
