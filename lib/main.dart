@@ -32,18 +32,19 @@ class _InicioState extends State<Inicio> {
       ),
       // ignore: prefer_const_constructors
       body: Center(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text('Home'),
-          ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => page2()));
-              },
-              child: Text('Ir a la otra pagina'))
-        ],
-      )),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text('Home'),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => page2()));
+                },
+                child: Text('Ir a la otra pagina'))
+          ],
+        ),
+      ),
     );
   }
 }
