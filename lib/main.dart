@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:personal_finance/models/Git.dart';
+import 'package:http/http.dart' as http;
 
 void main() => runApp(const MyApp());
 
@@ -10,13 +12,14 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  List<Contact> _contacts = [
-    Contact('Juan', 'Quiceno', '3127799316'),
-    Contact('Jenifer', 'Zapata', '3127799316'),
-    Contact('Valerie', 'Quiceno', '3127799316'),
-    Contact('Virgelina', 'Velasquez', '3127799316'),
-    Contact('Nelly', 'Velasquez', '3127799316'),
-  ];
+  late Future<List<Gif>> _listGifs;
+
+  Future<List<Gif>> _getGifs() async {
+    final response = await http.get(Uri.parse(
+        "https://api.giphy.com/v1/gifs/trending?api_key=m54sspSbn37dd8jj4ZeObEFtdM4yuSvT&limit=10&rating=g"));
+
+    return response;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,61 +27,12 @@ class _MyAppState extends State<MyApp> {
       title: 'Material App',
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Material App Bar'),
+          title: const Text('Consumir API'),
         ),
-        body: ListView.builder(
-          itemCount: _contacts.length,
-          itemBuilder: ((context, index) {
-            return ListTile(
-              onLongPress: () {
-                this._DeleteContact(context, _contacts[index]);
-              },
-              title:
-                  Text(_contacts[index].name + ' ' + _contacts[index].lastname),
-              subtitle: Text(_contacts[index].phone),
-              leading: CircleAvatar(
-                  child: Text(_contacts[index].name.substring(0, 1))),
-              trailing: Icon(Icons.arrow_forward_ios),
-            );
-          }),
+        body: const Center(
+          child: Text('Hello World'),
         ),
       ),
     );
   }
-
-  _DeleteContact(context, Contact contact) {
-    showDialog(
-        context: context,
-        builder: (_) => AlertDialog(
-              title: Text('Delete contact'),
-              content: Text(
-                  'Are you safe of to delete contact ' + contact.name + '?'),
-              actions: [
-                TextButton(
-                    onPressed: (() {
-                      Navigator.pop(context);
-                    }),
-                    child: Text('Cancel')),
-                TextButton(
-                    onPressed: (() {
-                      print(Contact);
-                      this._contacts.remove(contact);
-                      Navigator.pop(context);
-                      setState(() {});
-                    }),
-                    child: Text(
-                      'Delete',
-                      style: TextStyle(color: Colors.blue),
-                    )),
-              ],
-            ));
-  }
-}
-
-class Contact {
-  String name;
-  String lastname;
-  String phone;
-
-  Contact(this.name, this.lastname, this.phone);
 }
